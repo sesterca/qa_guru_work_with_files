@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "fd448a6a-d7d7-4cf6-8771-c243249c745b",
+		"name": "Diploma",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Создание учетной записи курьера",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"masha\",\r\n    \"password\": \"1111\",\r\n    \"firstName\": \"мария\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://2636497c-71d3-4bc4-90f1-7a4bbc775fd5.serverhub.praktikum-services.ru/api/v1/courier/",
+					"protocol": "https",
+					"host": [
+						"2636497c-71d3-4bc4-90f1-7a4bbc775fd5",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"courier",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление учетной записи курьера",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fce77f3-86be-42e7-b9d3-4a0041208e7b.serverhub.praktikum-services.ru/api/v1/courier/1",
+					"protocol": "https",
+					"host": [
+						"4fce77f3-86be-42e7-b9d3-4a0041208e7b",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"courier",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание заказа",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Marina\",\r\n    \"lastName\": \"Ivanova\",\r\n    \"address\": \"XYZ, 100 apt.\",\r\n    \"metroStation\": 2,\r\n    \"phone\": \"+7 800 355 50 35\",\r\n    \"rentTime\": 2,\r\n    \"deliveryDate\": \"2020-08-11\",\r\n    \"cancelled\": true,\r\n    \"comment\": \"No comments\",\r\n    \"color\": [\r\n        \"PINK\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fce77f3-86be-42e7-b9d3-4a0041208e7b.serverhub.praktikum-services.ru/api/v1/orders",
+					"protocol": "https",
+					"host": [
+						"4fce77f3-86be-42e7-b9d3-4a0041208e7b",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Курьер принимает заказ",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9914c391-57f5-4288-90b7-c2a1ae281f66",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://2636497c-71d3-4bc4-90f1-7a4bbc775fd5.serverhub.praktikum-services.ru/api/v1/orders/accept/3?courierId=1",
+					"protocol": "https",
+					"host": [
+						"2636497c-71d3-4bc4-90f1-7a4bbc775fd5",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"accept",
+						"3"
+					],
+					"query": [
+						{
+							"key": "courierId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Завершение заказа",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://2636497c-71d3-4bc4-90f1-7a4bbc775fd5.serverhub.praktikum-services.ru/api/v1/orders/finish/4?id",
+					"protocol": "https",
+					"host": [
+						"2636497c-71d3-4bc4-90f1-7a4bbc775fd5",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"finish",
+						"4"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение данных о заказа по треку",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fce77f3-86be-42e7-b9d3-4a0041208e7b.serverhub.praktikum-services.ru/api/v1/orders/track?t=923312",
+					"protocol": "https",
+					"host": [
+						"4fce77f3-86be-42e7-b9d3-4a0041208e7b",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"track"
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "923312"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Список заказов курьера",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fce77f3-86be-42e7-b9d3-4a0041208e7b.serverhub.praktikum-services.ru/api/v1/orders?courierId=1",
+					"protocol": "https",
+					"host": [
+						"4fce77f3-86be-42e7-b9d3-4a0041208e7b",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "courierId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Отмена заказа",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"track\": 529030\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4fce77f3-86be-42e7-b9d3-4a0041208e7b.serverhub.praktikum-services.ru/api/v1/orders/cancel",
+					"protocol": "https",
+					"host": [
+						"4fce77f3-86be-42e7-b9d3-4a0041208e7b",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация курьера",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"masha\",\r\n    \"password\": \"1111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://454728fa-b359-4ffd-a291-7f1fe11162a7.serverhub.praktikum-services.ru/api/v1/courier/login",
+					"protocol": "https",
+					"host": [
+						"454728fa-b359-4ffd-a291-7f1fe11162a7",
+						"serverhub",
+						"praktikum-services",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"courier",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
