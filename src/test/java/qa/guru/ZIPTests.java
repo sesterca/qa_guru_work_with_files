@@ -22,7 +22,7 @@ public class ZIPTests {
     @Test
     public void pdfExtractedFromZipTest() throws Exception{
         try (ZipFile zipFile = new ZipFile(new File("src/test/resources/sample.zip"));) {
-            ZipEntry entry = zipFile.getEntry("types/sample.pdf");
+            ZipEntry entry = zipFile.getEntry("sample.pdf");
             InputStream pdfStr = zipFile.getInputStream(entry);
             PDF pdf = new PDF(pdfStr);
             assertThat(pdf).containsTextCaseInsensitive("13 июн 2019 12:00");
@@ -33,7 +33,7 @@ public class ZIPTests {
     @Test
     public void xlsExtractedFromZipTest() throws Exception{
         try (ZipFile zipFile = new ZipFile(new File("src/test/resources/sample.zip"));){
-            ZipEntry entry = zipFile.getEntry("types/sample.xlsx");
+            ZipEntry entry = zipFile.getEntry("sample.xlsx");
             InputStream xlsStr = zipFile.getInputStream(entry);
             XLS xls = new XLS(xlsStr);
             String executor = xls.excel.getSheetAt(0).getRow(11).getCell(1).getStringCellValue();
@@ -43,7 +43,7 @@ public class ZIPTests {
     @Test
     public void csvExtractedFromZipTest() throws Exception {
         try (ZipFile zipFile = new ZipFile(new File("src/test/resources/sample.zip"));) {
-            ZipEntry entry = zipFile.getEntry("types/sample.csv");
+            ZipEntry entry = zipFile.getEntry("sample.csv");
             CSVReader reader = new CSVReader(new InputStreamReader(zipFile.getInputStream(entry), StandardCharsets.UTF_8));
             List<String[]> csvContent = reader.readAll();
             org.assertj.core.api.Assertions.assertThat(csvContent).hasSize(88);
